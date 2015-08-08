@@ -13,3 +13,14 @@ def search(search_query):
 
 def get_listings_for_book(bookid):
 	return true
+
+def register_user(username, password):
+	# hash up password before putting in the databus
+	return true
+
+def authenticate_user(username, password):
+	# has the password
+	# check against database
+	# return the user if the password is correct
+	# return false otherwise
+	return false
