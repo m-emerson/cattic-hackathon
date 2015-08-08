@@ -34,7 +34,11 @@
                       </div>
                     </li>
                     <li class="has-dropdown">
-                    <a href="#"><img class="usericon" src="{{img_url}"> hello {{user_firstname}}</a>
+			{% if logged_in %}
+			    <a href="#"><img class="usericon" src="{{img_url}">hello {{user_firstname}}</a>
+			{% else %} hello {{user_firstname}} {% endif %}
+			    <a href="login.html">log in / register</a>
+			{% endif %}
                         <ul class="dropdown">
 			    {% for item in navigation %}
 				<li><a href="{{item.href}}">{{item.linktext}}</a></li>
