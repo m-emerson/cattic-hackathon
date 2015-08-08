@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CATTICBOOKS | read you a cat today</title>
     <link rel="stylesheet" href="../static/css/foundation.css" />
+    <link rel="stylesheet" href="../static/css/foundation-icons.css" />
     <script src="../static/js/vendor/modernizr.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
@@ -16,7 +17,7 @@
     <div class="contain-to-grid-sticky">
         <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
-                <li class="name"><h1><a href="#">catticbooks</a></h1></li>
+                <li class="name"><h1><a href="/">catticbooks</a></h1></li>
                 <li class="toggle-topbar menu-icon"><a href="#">menu</a></li>
             </ul>
 
@@ -34,7 +35,11 @@
                       </div>
                     </li>
                     <li class="has-dropdown">
-                    <a href="#"><img class="usericon" src="{{img_url}}"> hello {{user_firstname}}</a>
+			{% if logged_in %}
+			    <a href="#"><img class="usericon" src="{{img_url}}">hello {{user_firstname}}</a>
+			{% else %}
+			    <a href="login">log in / register</a>
+			{% endif %}
                         <ul class="dropdown">
 			    {% for item in navigation %}
 				<li><a href="{{item.href}}">{{item.linktext}}</a></li>
@@ -47,9 +52,7 @@
     </div>
 
     <!-- PAGE BODY -->
-    <div class="container">
 	{% block content %}{% endblock %}
-    </div>
     
     <script src="../static/js/vendor/jquery.js"></script>
     <script src="../static/js/foundation.min.js"></script>

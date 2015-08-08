@@ -1,6 +1,7 @@
 body {
     background-color: #f0f0f0;
     font-family: 'Ubuntu', 'Roboto', sans-serif;
+    overflow-y: hidden;
 }
 
 .top-bar {
@@ -28,13 +29,21 @@ body {
 .top-bar input {
     border-radius: 5px 0 0 5px;
     border: 0;
-    background: #3c6eb4;
+    background: #ffffff;
+}
+
+::-webkit-input-placeholder {
+   color: #444444;
 }
 
 .top-bar .button {
     border-radius: 0 5px 5px 0;
-    background: rgba(60,110,180,0.5);
+    background-color: #3c6eb4;
     font-weight: bold;
+}
+
+.top-bar .button:hover {
+    background: #325691;
 }
 
 .top-bar-section ul li {
@@ -60,10 +69,8 @@ body {
 .top-bar-section li:not(.has-form) a:not(.button):hover,
 .top-bar-section li.active:not(.has-form) a:not(.button):hover,
 .top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button):hover {
-    background: #3c6eb4;
+    background: #325691;
 }
-
-
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'ubuntu', 'roboto', sans-serif;
@@ -82,9 +89,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .button {
+    font-family: 'Ubuntu', 'Roboto', sans-serif;
     background-color: #3c6eb4;
     margin-bottom: 0.5rem;
 }
+
 .button:hover {
     background-color: #294172;
 }
@@ -93,3 +102,36 @@ hr {
     margin: 0 2rem;
 }
 
+.loginbg {
+    background-color: #3c6eb4;
+    padding: 8rem 0 15rem 0;
+}
+
+.login.panel {
+    border-radius: 10px;
+    margin: 0;
+}
+
+span.prefix, label.prefix {
+    background: #999999;
+    border-radius: 5px 0 0 5px;
+}
+
+.login-form input[type="text"] {
+    border-radius: 0 5px 5px 0;
+}
+
+.button-group .button {
+    text-align: center;
+    background-color: #294172;
+    padding: 0.5rem 1rem;
+}
+    
+.button-group .button:hover {
+    background-color: #3c6eb4;
+}
+
+.fi-paw, .fi-mail, .fi-info {
+    color: #ffffff;
+    font-size: 2em;
+}

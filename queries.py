@@ -1,12 +1,16 @@
 import MySQLdb.cursors
 import hashlib
-import pprint
 
 db = None
 
 # here be the queries
 def get_books_by_courseid(courseid):
-	books = []
+	books = list()
+	db = do_mysql_connect()
+	cur = db.cursor()
+	cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te, COURSE_TEXTBOOK_LINK ctl, COURSES c WHERE t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND c.CODE = %s AND c.COURSEID = ctl.COURSEID", [courseid]);
+	for row in cur.fetchall():
+		books.append(row)
 	return books
 
 def get_course_by_courseid(courseid):
@@ -24,6 +28,9 @@ def search(search_query):
 	return true
 
 def get_listings_for_book(bookid):
+	# search by ISBN
+	db = do_mysql_connect()
+	cur = db.cursor()
 	return true
 
 def register_user(username, password, email, name):
@@ -67,8 +74,6 @@ def do_mysql_connect():
 
 def map_keys_to_values(keys, values):
 	kv = dict()
-	print keys[0]
-	print values[0]
 	for i in range(len(keys)):
 		print i
 		kv[keys[i]] = values[i]
