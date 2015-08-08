@@ -34,10 +34,11 @@
                       </div>
                     </li>
                     <li class="has-dropdown">
-                    <a href="#"><img class="usericon" src="nova.jpg"> hello marisa</a>
+                    <a href="#"><img class="usericon" src="{{img_url}"> hello {{user_firstname}}</a>
                         <ul class="dropdown">
-                            <li><a href="#">Manage Profile</a></li>
-                            <li><a href="#">Manage Listings</a></li>
+			    {% for item in navigation %}
+				<li><a href="{{item.href}}">{{item.linktext}}</a></li>
+			    {% endfor %}
                         </ul>
                     </li>
                 </ul>
