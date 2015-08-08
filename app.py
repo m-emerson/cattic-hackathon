@@ -20,7 +20,7 @@ def profile():
 
 @app.route("/login")
 def login():
-	return "aaa"
+	return render_template('login.html')
 
 @app.route("/book")
 def book():
