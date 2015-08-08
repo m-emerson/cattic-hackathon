@@ -28,6 +28,9 @@ def search(search_query):
 	return true
 
 def get_listings_for_book(bookid):
+	# search by ISBN
+	db = do_mysql_connect()
+	cur = db.cursor()
 	return true
 
 def register_user(username, password, email, name):
