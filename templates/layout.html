@@ -1,0 +1,60 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CATTICBOOKS | read you a cat today</title>
+    <link rel="stylesheet" href="../static/css/foundation.css" />
+    <script src="../static/js/vendor/modernizr.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../static/css/main.css" />
+  </head>
+
+    <body>
+    <!-- top navbar -->
+    <div class="contain-to-grid-sticky">
+        <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name"><h1><a href="#">catticbooks</a></h1></li>
+                <li class="toggle-topbar menu-icon"><a href="#">menu</a></li>
+            </ul>
+
+            <section class="top-bar-section">
+                <!-- Right Nav Section -->
+                <ul class="right">
+                    <li class="has-form">
+                      <div class="row collapse">
+                        <div class="large-10 small-9 columns">
+                          <input type="text" placeholder="Search courses, textbooks">
+                        </div>
+                        <div class="large-2 small-3 columns">
+                            <a href="#" class="button expand">Go!</a>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="has-dropdown">
+                    <a href="#"><img class="usericon" src="nova.jpg"> hello marisa</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Manage Profile</a></li>
+                            <li><a href="#">Manage Listings</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+    </div>
+
+    <!-- PAGE BODY -->
+    <div class="container">
+	{% block content %}{% endblock %}
+    </div>
+    
+    <script src="../static/js/vendor/jquery.js"></script>
+    <script src="../static/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
+
