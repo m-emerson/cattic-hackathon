@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function init {
-	uwsgi-2.7 -s /tmp/uwsgi.sock --module app --callable app &
+	uwsgi --module app --callable app --ini uwsgi.ini
 }
 
 USAGE="Usage: $0 [init | kill | restart]"
