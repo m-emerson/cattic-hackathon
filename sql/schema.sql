@@ -17,3 +17,4 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON booksearch.TEXTBOOKS TO 'book_interface'
 GRANT SELECT, INSERT, UPDATE, DELETE ON booksearch.USERS TO 'book_interface'@'localhost';
 GRANT SELECT, INSERT, UPDATE, DELETE ON booksearch.COURSE_TEXTBOOK_LINK TO 'book_interface'@'localhost';
 GRANT SELECT, INSERT, UPDATE, DELETE ON booksearch.LISTINGS TO 'book_interface'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON booksearch.TEXTBOOK_EDITIONS TO 'book_interface'@'localhost';
