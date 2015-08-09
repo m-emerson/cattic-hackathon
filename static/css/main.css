@@ -76,8 +76,42 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'ubuntu', 'roboto', sans-serif;
 }
 
+h4 {
+    font-weight: bolder;
+}
+
+h4.blue {
+    color: #3c6eb4;
+} 
+
+h4.red {
+    color: #ea6153;
+} 
+
+h4.purple {
+    color: #7761a7;
+} 
+
+.sitelogo {
+    color: #3c6eb4;
+    font-weight: bolder;
+    font-size: 1.5em;
+    margin-bottom: 2rem;
+    letter-spacing: 4px;
+}
+
+.sitelogo h1 {
+    color: #294172;
+    font-weight: bold;
+}
+
+.section-header h1 {
+    size: 1.5em;
+    color: #294172;
+}
+
 .container {
-    padding: 3rem 0;
+    padding: 2rem 0;
 }
 
 .panel {

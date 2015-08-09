@@ -1,34 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="row">
-    <div class="large-6 medium-6 columns">
-	<div class="panel">
-	    <h1>IMAGE HERE</h1>
-	</div>
-    </div>
-    <div class="large-6 medium-6 columns">
-	<div class="panel">
-	    <h1>title</h1>
-	</div>
-    </div>
-</div>
-<div class="row">
-    <div class="large-12 medium-12 columns">
-	<div class="panel">
-	    <p><strong>buy the book</strong></p>
-	    <div class="row">
-		<div class="large-7 large-offset-1 medium-8 columns">
-		    seller info
+<div class="container">
+    <div class="row">
+	<div class="large-12 medium-12 columns">
+	    <ul class="accordion" data-accordion>
+		<li class="accordion-navigation">
+		<a href="#courseinfo">Course Information</a>
+		<div id="courseinfo" class="content active">
+		  Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 		</div>
-		<div class="large-2 medium-2 columns">
-		    price
+		</li>
+		<li class="accordion-navigation">
+		<a href="#required">Required Texts</a>
+		<div id="required" class="content">
+		  Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 		</div>
-		<div class="large-2 medium-2 columns">
-		    <a href="#" class="tiny round button">Contact Seller</a>
+		</li>
+		<li class="accordion-navigation">
+		<a href="#recommended">Recommended Texts</a>
+		<div id="recommended" class="content">
+		  Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 		</div>
-	    </div>
-	    <hr>
-	</div>
+		</li>
+	    </ul>
     </div>
 </div>
 {% endblock %}

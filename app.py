@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-	return "Hello World!"
+	return render_template('index.html')
 
 @app.route("/test")
 def test():
@@ -25,6 +25,14 @@ def login():
 @app.route("/book")
 def book():
 	return render_template('book.html')
+
+@app.route("/course")
+def course():
+	return render_template('course.html')
+
+@app.route("/about")
+def about():
+	return render_template('about.html')
 
 @auth.verify_password
 def verify_password(username, password):
