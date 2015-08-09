@@ -32,6 +32,15 @@ def get_books_by_courseid_and_reqstatus(courseid, reqstatus):
                 books.append(row)
         return books
 
+def get_book_image_by_isbn(isbn):
+	db = do_mysql_connect()
+	cur =  db.cursor()
+	cur.execute("SELECT te.PHOTO FROM TEXTBOOK_EDITIONS te WHERE te.ISBN = %s", [isbn]);
+        if cur.rowcount == 1:
+                return cur.fetchone()['PHOTO']
+        else:
+                return 0
+
 def get_listings_for_book(bookid):
 	# search by ISBN
 	listings = list()
