@@ -23,6 +23,15 @@ def get_course_by_courseid(courseid):
 	else:
 		return 0
 
+def get_books_by_courseid_and_reqstatus(courseid, reqstatus):
+        books = list()
+        db = do_mysql_connect()
+        cur = db.cursor()
+        cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION, ctl.REQUIRED_STATUS FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te, COURSE_TEXTBOOK_LINK ctl, COURSES c WHERE t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND c.COURSEID = ctl.COURSEID AND ctl.TEXTBOOKID = t.TEXTBOOKID AND c.CODE = %s AND ctl.REQUIRED_STATUS = %s GROUP BY te.ISBN", [courseid, reqstatus]);
+        for row in cur.fetchall():
+                books.append(row)
+        return books
+
 def get_listings_for_book(bookid):
 	# search by ISBN
 	listings = list()
