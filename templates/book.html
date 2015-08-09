@@ -19,7 +19,7 @@
 	    <div class="panel">
 		<div class="row">
 		    <div class="large-10 small-11 columns">
-			<p><strong>buy the book</strong></p>
+			<h4 class="darkblue">buy the book</h4>
 		    </div>
 		    <div class="large-2 small-1 column text-right">
 			<a href="#" data-reveal-id="addListing" class="tiny round button">Add Listing</a>
@@ -62,8 +62,22 @@
 		    </div>
 		</div>	
 		<div class="row">
+		    <div class="large-3 large-offset-1 medium-4 columns">
+			<h5 class="blue">Username</h5>
+		    </div>
+		    <div class="large-3 large-offset-1 medium-4 columns">
+			<h5 class="blue">Book Condition</h5>
+		    </div>
+		    <div class="large-2 medium-2 columns">
+			<h5 class="blue">Price</h5>
+		    </div>
+		    <div class="large-2 medium-2 columns">
+		    </div>
+		</div>
+		<hr>
+		<div class="row">
 		{% for listing in listings %}
-		    <div class="large-4 large-offset-1 medium-4 columns">
+		    <div class="large-3 large-offset-1 medium-4 columns">
 			{{ listing.USERID }}
 		    </div>
 		    <div class="large-3 large-offset-1 medium-4 columns">
