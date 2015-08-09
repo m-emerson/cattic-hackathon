@@ -28,7 +28,7 @@ def get_listings_for_book(bookid):
 	listings = list()
 	db = do_mysql_connect()
 	cur = db.cursor()
-	cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION, l.USERID, l.PRICE, l.ITEM_CONDITION FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te, LISTINGS l WHERE te.ISBN = l.TEXTBOOK_ISBN AND t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND l.TEXTBOOK_ISBN = %s GROUP BY l.TEXTBOOK_ISBN", [bookid]);
+	cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION, l.USERID, l.PRICE, l.ITEM_CONDITION, l.LISTINGID FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te, LISTINGS l WHERE te.ISBN = l.TEXTBOOK_ISBN AND t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND l.TEXTBOOK_ISBN = %s GROUP BY l.TEXTBOOK_ISBN", [bookid]);
 	for row in cur.fetchall():
 		listings.append(row)
 	return listings
@@ -41,6 +41,45 @@ def get_books_by_isbn(isbn):
 		return cur.fetchone()
 	else:
 		return 0
+
+def create_listing(isbn, username, price, condition):
+	db = do_mysql_connect()
+	cur = db.cursor()
+	userid = None
+	cur.execute("SELECT USERID FROM USERS WHERE USERNAME = %s", [username]);
+	if cur.rowcount == 1:
+		userid = cur.fetchone()['USERID']
+	else:
+		return -1
+	try:
+		cur.execute("INSERT INTO LISTINGS (TEXTBOOK_ISBN, USERID, PRICE, ITEM_CONDITION) VALUES (%s, %s, %s, %s)", [isbn, userid, price, condition]);
+		db.commit()
+	except MySQLdb.Error as e:
+		db.rollback()
+		return 0
+	return 1
+
+def update_listing(listingid, price, condition):
+	db = do_mysql_connect()
+	cur = db.cursor()
+	try:
+		cur.execute("UPDATE LISTINGS SET PRICE = %s, ITEM_CONDITION = %s WHERE LISTINGID = %s", [price, condition, listingid]);
+		db.commit()
+	except MySQLdb.Error as e:
+		db.rollback()
+		return 0
+	return 1
+
+def delete_listing(listingid):
+	db = do_mysql_connect()
+	cur = db.cursor()
+	try:
+		cur.execute("DELETE FROM LISTINGS WHERE LISTINGID = %s", [listingid]);
+		db.commit()
+	except MySQLdb.Error as e:
+		db.rollback()
+		return 0
+	return 1
 
 def register_user(username, password, email, name):
 	# hash up password before putting in the databus
