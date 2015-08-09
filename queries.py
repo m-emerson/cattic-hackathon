@@ -46,7 +46,7 @@ def get_listings_for_book(bookid):
 	listings = list()
 	db = do_mysql_connect()
 	cur = db.cursor()
-	cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION, l.USERID, l.PRICE, l.ITEM_CONDITION, l.LISTINGID, u.USERNAME FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te, LISTINGS l, USERS u WHERE te.ISBN = l.TEXTBOOK_ISBN AND t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND l.USERID = u.USERID AND l.TEXTBOOK_ISBN = %s GROUP BY l.TEXTBOOK_ISBN", [bookid]);
+	cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION, l.USERID, l.PRICE, l.ITEM_CONDITION, l.LISTINGID, u.USERNAME FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te, LISTINGS l, USERS u WHERE te.ISBN = l.TEXTBOOK_ISBN AND t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND l.USERID = u.USERID AND l.TEXTBOOK_ISBN = %s", [bookid]);
 	for row in cur.fetchall():
 		listings.append(row)
 	return listings
