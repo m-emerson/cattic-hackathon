@@ -23,10 +23,6 @@ def get_course_by_courseid(courseid):
 	else:
 		return 0
 
-def search(search_query):
-	# e.g. GET COURSE LIKE "CSSE%"
-	return true
-
 def get_listings_for_book(bookid):
 	# search by ISBN
 	listings = list()
