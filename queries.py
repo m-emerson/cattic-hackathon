@@ -33,6 +33,9 @@ def get_listings_for_book(bookid):
 	cur = db.cursor()
 	return true
 
+def get_textbooks_by_isbn(isbn):
+	return 0
+
 def register_user(username, password, email, name):
 	# hash up password before putting in the databus
 	hashed_password = hashlib.sha512(password).hexdigest()
