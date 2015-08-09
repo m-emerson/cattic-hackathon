@@ -87,6 +87,15 @@ def get_user_profile(username):
 	else:
 		return 0
 
+def get_username_by_userid(userid):
+	db = do_mysql_connect()
+	cur = db.cursor()
+	cur.execute("SELECT USERNAME FROM USERS WHERE USERID=%s", [userid]);
+	if cur.rowcount == 1:
+		return cur.fetchone()['USERNAME']
+	else:
+		return 0
+
 def create_listing(isbn, username, price, condition):
 	db = do_mysql_connect()
 	cur = db.cursor()
