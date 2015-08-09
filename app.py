@@ -11,10 +11,6 @@ app.secret_key = 'omgsuchsecrets'
 def hello():
 	return render_template('index.html')
 
-@app.route("/test")
-def test():
-	return "HELLO!!!!"
-
 @app.route("/profile")
 def profile():
 	return jsonify({ 'data' : 'Hello %s!' % g.user.username })
@@ -32,9 +28,10 @@ def login():
 			error = "Incorrect login details"
 	return render_template('login.html', error=error)
 
-@app.route("/book/<editionid>")
-def book():
-	return render_template('book.html')
+@app.route("/book/<isbn>")
+def book(isbn):
+	listings = db.get_listings_for_book(isbn)
+	return render_template('book.html', listings=listings)
 
 @app.route("/course")
 def course():
@@ -44,18 +41,17 @@ def course():
 def about():
 	return render_template('about.html')
 
-@app.route("/images/book/<isbn>")
+@app.route("/images/book/<isbn>.jpg")
 def render_book_image(isbn):
 	image_blob = db.get_book_image_by_isbn(isbn)
-	return send_file(io.BytesIO(image_blob))
+	return send_file(io.BytesIO(image_blob), attachment_filename=isbn + '.jpg', mimetype='image/jpeg')
 
 @app.route("/courses/<courseid>")
 def course_books(courseid):
 	course = db.get_course_by_courseid(courseid)
-	books = db.get_books_by_courseid(courseid)
-	return render_template('course.html', course=course, books=books);
-	print books
-	return "search books for this course"
+	required_books = db.get_books_by_courseid_and_reqstatus(courseid, 'Required')
+	recommended_books = db.get_books_by_courseid_and_reqstatus(courseid, 'Recommended')
+	return render_template('course.html', course=course, required=required_books, recommended=recommended_books);
 
 @app.route("/listings/create/<editionid>", methods=['GET', 'POST'])
 def create_listing():

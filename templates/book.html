@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
 	<div class="large-6 medium-6 columns panel text-center">
-	    <img src = "{{ bookimg }}">
+	    <img src = "{{ booking }}">
 	</div>
 	<div class="large-6 medium-6 columns">
 	    <div class="panel">
@@ -20,14 +20,17 @@
 		<p><strong>buy the book</strong></p>
 		<div class="row">
 		{% for listing in listings %}
-		    <div class="large-7 large-offset-1 medium-8 columns">
-			{{ listing.seller }}
+		    <div class="large-4 large-offset-1 medium-4 columns">
+			{{ listing.USERID }}
+		    </div>
+		    <div class="large-3 large-offset-1 medium-4 columns">
+			{{ listing.ITEM_CONDITION }}
 		    </div>
 		    <div class="large-2 medium-2 columns">
-			{{ listing.price }}
+			${{ listing.PRICE }}
 		    </div>
 		    <div class="large-2 medium-2 columns">
-			<a href="mailto: {{ listing.contact }}" class="tiny round button">Contact Seller</a>
+			<a href="mailto: {{ listing.USERID }}" class="tiny round button">Contact Seller</a>
 		    </div>
 		{% endfor %}
 		</div>
