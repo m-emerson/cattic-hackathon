@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
+  {% block scripts %}{% endblock %}
     <script>
       window.onload = function() {
           $("#searchBtn").click(function(e) {
@@ -56,7 +57,7 @@
 		    {% else %}
 		    <li class="has-dropdown"><a href="login">log in / register</a>
 			<ul class="dropdown">
-			    <li><a href="about">About Us</a></li>
+			    <li><a href="/about">About Us</a></li>
 			</ul>
 		    </li>
 		    {% endif %}

@@ -1,16 +1,20 @@
 {% extends "layout.html" %}
+{% block scripts %}
+<script>
+</script>
+{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
 	<div class="large-6 medium-6 columns panel text-center">
-	    <img src = "{{ booking }}">
+	    <img src="/images/book/{{ listings[0]['ISBN'] }}.jpg">
 	</div>
 	<div class="large-6 medium-6 columns">
 	    <div class="panel">
-		<h1>title</h1>
-		edition<br>
-		author<br>
-		blah<br>
+		<h4 class="blue">{{ listings[0]['NAME'] }}</h4>
+		edition: {{ listings[0]['EDITION'] }}<br>
+		{{ listings[0]['AUTHOR'] }}<br>
+		{{ listings[0]['DESCRIPTION'] }}<br>
 	    </div>
 	</div>
     </div>
@@ -26,6 +30,9 @@
 		    </div>
 		    <div id="addListing" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+			<form action="#" id="add_listing" method="POST">
+				<input type="hidden" name="isbn" value="{{ listings[0]['ISBN'] }}" />
+				<input type="hidden" name="username" value="quack" />
 			<div class="panel text-center">
 			    <div class="row collapse">
 				<div class="small-3 columns">
@@ -33,6 +40,8 @@
 				</div>
 				<div class="small-9 columns">
 				    <input type="text" value="booktitle" readonly="readonly">
+				<div class="small-8 columns">
+				    <input type="text" id="book_name" value="{{ listings[0]['NAME'] }}" readonly="readonly">
 				</div>
 			    </div>
 			    <div class="row collapse">
@@ -41,6 +50,8 @@
 				</div>
 				<div class="small-9 columns">
 				    <input type="text" placeholder="Price in AUD">
+				<div class="small-8 columns">
+				    <input name="price" type="text" placeholder="Price in AUD">
 				</div>
 			    </div>
 			    <div class="row collapse">
@@ -49,15 +60,18 @@
 				</div>
 				<div class="small-9 columns">
 				    <select>
-					<option value="new">New - perfect quality</option>
-					<option value="good">Good - unmarked</option>
-					<option value="fair">Fair - worn but still complete</option>
-					<option value="poor">Poor - Some missing pages</option>
-					<option value="cat">Bad - cat chew marks</option>
+				<div class="small-8 columns">
+				    <select name="condition">
+					<option value="New">New - perfect quality</option>
+					<option value="Good">Good - unmarked</option>
+					<option value="Fair">Fair - worn but still complete</option>
+					<option value="Poor">Poor - Some missing pages</option>
+					<option value="Very Bad">Bad - cat chew marks</option>
 				    </select>
 				</div>
 			    </div>
-			    <a href="" class="tiny round button">Add you a book!</a>
+			    <button href="" name="add_book" type="submit" class="tiny round button">Add you a book!</a>
+			</form>
 			</div>
 		    </div>
 		</div>	
@@ -78,7 +92,7 @@
 		<div class="row">
 		{% for listing in listings %}
 		    <div class="large-3 large-offset-1 medium-4 columns">
-			{{ listing.USERID }}
+			{{ listing.USERNAME }}
 		    </div>
 		    <div class="large-3 large-offset-1 medium-4 columns">
 			{{ listing.ITEM_CONDITION }}

@@ -4,6 +4,11 @@ body {
     overflow-y: hidden;
 }
 
+img.tb_prev {
+    max-height: 15rem;
+    margin-bottom: 0.5rem;
+}
+
 .top-bar {
     background-color: #294172;
     height: 3rem;
