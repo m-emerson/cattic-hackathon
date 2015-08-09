@@ -42,6 +42,15 @@ def get_books_by_isbn(isbn):
 	else:
 		return 0
 
+def get_listings_by_username(username):
+	listings = list()
+	db = do_mysql_connect()
+	cur = db.cursor()
+	cur.execute("SELECT l.TEXTBOOK_ISBN, l.PRICE, l.ITEM_CONDITION, t.NAME, te.DESCRIPTION, te.AUTHOR, te.EDITION FROM LISTINGS l, TEXTBOOKS t, TEXTBOOK_EDITIONS te WHERE l.TEXTBOOK_ISBN = te.ISBN AND te.MASTER_TEXTBOOKID = t.TEXTBOOKID AND l.USERID = (SELECT USERID FROM USERS WHERE USERNAME=%s)", [username]);
+	for row in cur.fetchall():
+		listings.append(row)
+	return listings
+
 def create_listing(isbn, username, price, condition):
 	db = do_mysql_connect()
 	cur = db.cursor()
