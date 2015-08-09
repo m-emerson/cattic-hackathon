@@ -70,28 +70,28 @@
 		    </div>
 		</div>	
 		<div class="row">
-		    <div class="large-3 large-offset-1 medium-4 columns">
+		    <div class="large-3 large-offset-1 small-4 columns">
 			<h5 class="blue">Username</h5>
 		    </div>
-		    <div class="large-3 large-offset-1 medium-4 columns">
+		    <div class="large-3 large-offset-1 small-4 columns">
 			<h5 class="blue">Book Condition</h5>
 		    </div>
-		    <div class="large-2 medium-2 columns">
+		    <div class="large-2 small-2 columns">
 			<h5 class="blue">Price</h5>
 		    </div>
-		    <div class="large-2 medium-2 columns">
+		    <div class="large-2 small-2 columns">
 		    </div>
 		</div>
 		<hr>
 		<div class="row">
 		{% for listing in listings %}
-		    <div class="large-3 large-offset-1 medium-4 columns">
+		    <div class="large-3 large-offset-1 small-4 columns">
 			{{ listing.USERNAME }}
 		    </div>
-		    <div class="large-3 large-offset-1 medium-4 columns">
+		    <div class="large-3 large-offset-1 small-4 columns">
 			{{ listing.ITEM_CONDITION }}
 		    </div>
-		    <div class="large-2 medium-2 columns">
+		    <div class="large-2 small-2 columns">
 			${{ listing.PRICE }}
 		    </div>
 		    <div class="large-2 medium-2 columns">
