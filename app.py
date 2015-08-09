@@ -28,10 +28,16 @@ def login():
 			error = "Incorrect login details"
 	return render_template('login.html', error=error)
 
-@app.route("/book/<isbn>")
+@app.route("/book/<isbn>", methods=['GET', 'POST'])
 def book(isbn):
+	if request.method == 'POST':
+		db.create_listing(request.form['isbn'], request.form['username'], request.form['price'], request.form['condition'])
 	listings = db.get_listings_for_book(isbn)
 	return render_template('book.html', listings=listings)
+
+@app.route("/listing/add/<isbn>", methods=['POST'])
+def add_listing(isbn):
+	db.create_listing(isbn, username, price, condition)
 
 @app.route("/course")
 def course():

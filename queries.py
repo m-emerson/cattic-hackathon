@@ -48,6 +48,7 @@ def get_listings_for_book(bookid):
 	cur = db.cursor()
 	cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION, l.USERID, l.PRICE, l.ITEM_CONDITION, l.LISTINGID, u.USERNAME FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te, LISTINGS l, USERS u WHERE te.ISBN = l.TEXTBOOK_ISBN AND t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND l.USERID = u.USERID AND l.TEXTBOOK_ISBN = %s GROUP BY l.TEXTBOOK_ISBN", [bookid]);
 	for row in cur.fetchall():
+		print "!!!"
 		listings.append(row)
 	return listings
 
