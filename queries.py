@@ -72,7 +72,7 @@ def update_listing(listingid, price, condition):
 	db = do_mysql_connect()
 	cur = db.cursor()
 	try:
-		cur.execute("UPDATE LISTINGS SET PRICE = %s, ITEM_CONDITION = %s WHERE LISTINGID = %s", [price, condition, listingid]);
+		cur.execute("UPDATE LISTINGS SET PRICE = %s, ITEM_CONDITION = %s WHERE LISTINGID = %s", [price, condition, listingid])
 		db.commit()
 	except MySQLdb.Error as e:
 		db.rollback()
@@ -96,12 +96,36 @@ def register_user(username, password, email, name):
 	db = do_mysql_connect()
 	cur = db.cursor()
 	try:
-		cur.execute("INSERT INTO USERS(username, password, email, name) VALUES(%s, %s, %s, %s)", [username, hashed_password, email, name]);
+		cur.execute("INSERT INTO USERS(username, password, email, name) VALUES(%s, %s, %s, %s)", [username, hashed_password, email, name])
 		db.commit()
 	except MySQLdb.Error as e:
 		db.rollback()
 		return 0
 	return 1
+
+def update_user_profile(username, email, name):
+	db = do_mysql_connect()
+	cur = db.cursor()
+	try:
+		cur.execute("UPDATE USERS SET EMAIL = %s, NAME = %s WHERE USERNAME = %s", [email, name, username])
+		db.commit()
+	except MySQLdb.Error as e:
+		db.rollback()
+		return 0
+	return 1
+
+def change_user_password(username, newpassword):
+	hashed_password = hashlib.sha512(newpassword).hexdigest()
+	db = do_mysql_connect()
+	cur = db.cursor()
+	try:
+		cur.execute("UPDATE USERS SET PASSWORD = %s WHERE USERNAME = %s", [hashed_password, username])
+		db.commit()
+	except MySQLdb.Error as e:
+		db.rollback()
+		return 0
+	return 1
+	
 
 def authenticate_user(username, password):
 	# hash the password
