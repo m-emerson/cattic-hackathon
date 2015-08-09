@@ -28,26 +28,26 @@
 			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 			<div class="panel text-center">
 			    <div class="row collapse">
-				<div class="small-4 columns">
+				<div class="small-3 columns">
 				    <span class="prefix">Book:</span>
 				</div>
-				<div class="small-8 columns">
+				<div class="small-9 columns">
 				    <input type="text" value="booktitle" readonly="readonly">
 				</div>
 			    </div>
 			    <div class="row collapse">
-				<div class="small-4 columns">
+				<div class="small-3 columns">
 				    <span class="prefix">Price:</span>
 				</div>
-				<div class="small-8 columns">
+				<div class="small-9 columns">
 				    <input type="text" placeholder="Price in AUD">
 				</div>
 			    </div>
 			    <div class="row collapse">
-				<div class="small-4 columns">
+				<div class="small-3 columns">
 				    <span class="prefix">Condition:</span>
 				</div>
-				<div class="small-8 columns">
+				<div class="small-9 columns">
 				    <select>
 					<option value="new">New - perfect quality</option>
 					<option value="good">Good - unmarked</option>
@@ -87,7 +87,27 @@
 			${{ listing.PRICE }}
 		    </div>
 		    <div class="large-2 medium-2 columns">
-			<a href="mailto: {{ listing.USERID }}" class="tiny round button">Contact Seller</a>
+			<a href="#" data-reveal-id="sendMail" class="tiny round button">Contact Seller</a>
+		    <div id="sendMail" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+			<div class="panel text-center">
+			    <div class="row collapse">
+				<div class="small-2 columns">
+				    <span class="prefix">User:</span>
+				</div>
+				<div class="small-10 columns">
+				    <input type="text" value="{{ listing.USERID }}" readonly="readonly">
+				</div>
+			    </div>
+			    <div class="row">
+				<div class="large-12 columns">
+				    <textarea rows="5" placeholder="message here"></textarea>
+				</div>
+			    </div>
+			    <a href="" class="tiny round button">Send Mail!</a>
+			</div>
+		    </div>
+		</div>	
 		    </div>
 		{% endfor %}
 		</div>
