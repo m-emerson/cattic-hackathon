@@ -17,7 +17,50 @@
     <div class="row">
 	<div class="large-12 medium-12 columns">
 	    <div class="panel">
-		<p><strong>buy the book</strong></p>
+		<div class="row">
+		    <div class="large-10 small-11 columns">
+			<p><strong>buy the book</strong></p>
+		    </div>
+		    <div class="large-2 small-1 column text-right">
+			<a href="#" data-reveal-id="addListing" class="tiny round button">Add Listing</a>
+		    </div>
+		    <div id="addListing" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+			<div class="panel text-center">
+			    <div class="row collapse">
+				<div class="small-4 columns">
+				    <span class="prefix">Book:</span>
+				</div>
+				<div class="small-8 columns">
+				    <input type="text" value="booktitle" readonly="readonly">
+				</div>
+			    </div>
+			    <div class="row collapse">
+				<div class="small-4 columns">
+				    <span class="prefix">Price:</span>
+				</div>
+				<div class="small-8 columns">
+				    <input type="text" placeholder="Price in AUD">
+				</div>
+			    </div>
+			    <div class="row collapse">
+				<div class="small-4 columns">
+				    <span class="prefix">Condition:</span>
+				</div>
+				<div class="small-8 columns">
+				    <select>
+					<option value="new">New - perfect quality</option>
+					<option value="good">Good - unmarked</option>
+					<option value="fair">Fair - worn but still complete</option>
+					<option value="poor">Poor - Some missing pages</option>
+					<option value="cat">Bad - cat chew marks</option>
+				    </select>
+				</div>
+			    </div>
+			    <a href="" class="tiny round button">Add you a book!</a>
+			</div>
+		    </div>
+		</div>	
 		<div class="row">
 		{% for listing in listings %}
 		    <div class="large-4 large-offset-1 medium-4 columns">
