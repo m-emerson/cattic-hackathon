@@ -76,11 +76,11 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'ubuntu', 'roboto', sans-serif;
 }
 
-h4 {
+h4, h5 {
     font-weight: bolder;
 }
 
-h4.blue {
+h4.blue, h5.blue {
     color: #3c6eb4;
 } 
 
@@ -168,4 +168,16 @@ span.prefix, label.prefix {
 .fi-paw, .fi-mail, .fi-info {
     color: #ffffff;
     font-size: 2em;
+}
+
+.accordion .accordion-navigation.active > a, .accordion dd.active > a,
+.accordion .accordion-navigation > a {
+    background-color: #3c6eb4;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.accordion .accordion-navigation.active >a,
+.accordion .accordion-navigation > a:hover {
+    background-color: #294172;
 }
