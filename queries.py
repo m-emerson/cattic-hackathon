@@ -8,7 +8,7 @@ def get_books_by_courseid(courseid):
 	books = list()
 	db = do_mysql_connect()
 	cur = db.cursor()
-	cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te, COURSE_TEXTBOOK_LINK ctl, COURSES c WHERE t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND c.CODE = %s AND c.COURSEID = ctl.COURSEID", [courseid]);
+	cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION, ctl.REQUIRED_STATUS FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te, COURSE_TEXTBOOK_LINK ctl, COURSES c WHERE t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND c.COURSEID = ctl.COURSEID AND ctl.TEXTBOOKID = t.TEXTBOOKID AND c.CODE = %s GROUP BY te.ISBN", [courseid]);
 	for row in cur.fetchall():
 		books.append(row)
 	return books
@@ -23,15 +23,24 @@ def get_course_by_courseid(courseid):
 	else:
 		return 0
 
-def search(search_query):
-	# e.g. GET COURSE LIKE "CSSE%"
-	return true
-
 def get_listings_for_book(bookid):
 	# search by ISBN
+	listings = list()
 	db = do_mysql_connect()
 	cur = db.cursor()
-	return true
+	cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION, l.USERID, l.PRICE, l.ITEM_CONDITION FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te, LISTINGS l WHERE te.ISBN = l.TEXTBOOK_ISBN AND t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND l.TEXTBOOK_ISBN = %s GROUP BY l.TEXTBOOK_ISBN", [bookid]);
+	for row in cur.fetchall():
+		listings.append(row)
+	return listings
+
+def get_books_by_isbn(isbn):
+        db = do_mysql_connect()
+        cur = db.cursor()
+	cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te WHERE t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND te.ISBN = %s", [isbn]);
+	if cur.rowcount == 1:
+		return cur.fetchone()
+	else:
+		return 0
 
 def register_user(username, password, email, name):
 	# hash up password before putting in the databus
