@@ -84,6 +84,10 @@ h4.blue, h5.blue {
     color: #3c6eb4;
 } 
 
+h4.darkblue {
+    color: #294172;
+}
+
 h4.red {
     color: #ea6153;
 } 
@@ -133,7 +137,8 @@ h4.purple {
 }
 
 hr {
-    margin: 0 2rem;
+    margin: 0.2rem 2rem;
+    margin-top: 0;
 }
 
 .loginbg {
