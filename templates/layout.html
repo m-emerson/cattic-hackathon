@@ -1,6 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
+    <script>
+      window.onload = function() {
+          $("#searchBtn").click(function(e) {
+            var text = $("#searchbox").val();
+            window.location.href = "/courses/" + text;
+          });
+      }
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CATTICBOOKS | read you a cat today</title>
@@ -28,10 +36,10 @@
                     <li class="has-form">
                       <div class="row collapse">
                         <div class="large-10 small-9 columns">
-                          <input type="text" placeholder="Search courses, textbooks">
+                          <input type="text" id="searchbox" placeholder="Search courses, textbooks">
                         </div>
                         <div class="large-2 small-3 columns">
-                            <a href="#" class="button expand">Go!</a>
+                            <a class="button expand" id="searchBtn" href="#">Go!</a>
                         </div>
                       </div>
                     </li>
