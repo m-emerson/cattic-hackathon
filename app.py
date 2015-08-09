@@ -31,7 +31,7 @@ def login():
 #			error = "Incorrect login details"
 	return render_template('login.html', error=error)
 
-@app.route("/book/<editionid>")
+@app.route("/book/")
 def book():
 	return render_template('book.html')
 
