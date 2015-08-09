@@ -23,6 +23,24 @@ def get_course_by_courseid(courseid):
 	else:
 		return 0
 
+def get_books_by_courseid_and_reqstatus(courseid, reqstatus):
+        books = list()
+        db = do_mysql_connect()
+        cur = db.cursor()
+        cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION, ctl.REQUIRED_STATUS FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te, COURSE_TEXTBOOK_LINK ctl, COURSES c WHERE t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND c.COURSEID = ctl.COURSEID AND ctl.TEXTBOOKID = t.TEXTBOOKID AND c.CODE = %s AND ctl.REQUIRED_STATUS = %s GROUP BY te.ISBN", [courseid, reqstatus]);
+        for row in cur.fetchall():
+                books.append(row)
+        return books
+
+def get_book_image_by_isbn(isbn):
+	db = do_mysql_connect()
+	cur =  db.cursor()
+	cur.execute("SELECT te.PHOTO FROM TEXTBOOK_EDITIONS te WHERE te.ISBN = %s", [isbn]);
+        if cur.rowcount == 1:
+                return cur.fetchone()['PHOTO']
+        else:
+                return 0
+
 def get_listings_for_book(bookid):
 	# search by ISBN
 	listings = list()
@@ -72,7 +90,7 @@ def update_listing(listingid, price, condition):
 	db = do_mysql_connect()
 	cur = db.cursor()
 	try:
-		cur.execute("UPDATE LISTINGS SET PRICE = %s, ITEM_CONDITION = %s WHERE LISTINGID = %s", [price, condition, listingid]);
+		cur.execute("UPDATE LISTINGS SET PRICE = %s, ITEM_CONDITION = %s WHERE LISTINGID = %s", [price, condition, listingid])
 		db.commit()
 	except MySQLdb.Error as e:
 		db.rollback()
@@ -96,12 +114,36 @@ def register_user(username, password, email, name):
 	db = do_mysql_connect()
 	cur = db.cursor()
 	try:
-		cur.execute("INSERT INTO USERS(username, password, email, name) VALUES(%s, %s, %s, %s)", [username, hashed_password, email, name]);
+		cur.execute("INSERT INTO USERS(username, password, email, name) VALUES(%s, %s, %s, %s)", [username, hashed_password, email, name])
 		db.commit()
 	except MySQLdb.Error as e:
 		db.rollback()
 		return 0
 	return 1
+
+def update_user_profile(username, email, name):
+	db = do_mysql_connect()
+	cur = db.cursor()
+	try:
+		cur.execute("UPDATE USERS SET EMAIL = %s, NAME = %s WHERE USERNAME = %s", [email, name, username])
+		db.commit()
+	except MySQLdb.Error as e:
+		db.rollback()
+		return 0
+	return 1
+
+def change_user_password(username, newpassword):
+	hashed_password = hashlib.sha512(newpassword).hexdigest()
+	db = do_mysql_connect()
+	cur = db.cursor()
+	try:
+		cur.execute("UPDATE USERS SET PASSWORD = %s WHERE USERNAME = %s", [hashed_password, username])
+		db.commit()
+	except MySQLdb.Error as e:
+		db.rollback()
+		return 0
+	return 1
+	
 
 def authenticate_user(username, password):
 	# hash the password
