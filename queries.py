@@ -51,7 +51,7 @@ def get_listings_for_book(bookid):
 		listings.append(row)
 	return listings
 
-def get_books_by_isbn(isbn):
+def get_book_by_isbn(isbn):
         db = do_mysql_connect()
         cur = db.cursor()
 	cur.execute("SELECT t.NAME, te.ISBN, te.PHOTO, te.DESCRIPTION, te.AUTHOR, te.EDITION FROM TEXTBOOKS t, TEXTBOOK_EDITIONS te WHERE t.TEXTBOOKID = te.MASTER_TEXTBOOKID AND te.ISBN = %s", [isbn]);
