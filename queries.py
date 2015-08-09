@@ -69,6 +69,15 @@ def get_listings_by_username(username):
 		listings.append(row)
 	return listings
 
+def get_listing_by_listingid(listingid):
+	db = do_mysql_connect()
+	cur = db.cursor()
+	cur.execute("SELECT l.TEXTBOOK_ISBN, l.PRICE, l.ITEM_CONDITION, t.NAME, te.DESCRIPTION, te.AUTHOR, te.EDITION FROM LISTINGS l, TEXTBOOKS t, TEXTBOOK_EDITIONS te WHERE l.TEXTBOOK_ISBN = te.ISBN AND te.MASTER_TEXTBOOKID = t.TEXTBOOKID AND l.LISTINGID = %s", [listingid]);
+        if cur.rowcount == 1:
+                return cur.fetchone()
+        else:
+                return 0
+
 def get_user_profile(username):
 	db = do_mysql_connect()
 	cur = db.cursor()
