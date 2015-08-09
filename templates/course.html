@@ -7,26 +7,20 @@
 		<li class="accordion-navigation">
 		<a href="#courseinfo">Course Information</a>
 		<div id="courseinfo" class="content active">
-		    <h4 class="blue">Course title</h4>
-		    course info
+		    <h4 class="blue">{{ course['CODE'] }}</h4>
+                    {{ course['NAME'] }}
 		</div>
 		</li>
 		<li class="accordion-navigation">
 		    <a href="#required">Required Texts</a>
 		    <div id="required" class="content">
 			<div class="row">
+			{% for book in required %}
 			    <div class="large-4 small-12 columns text-center">
-				<img src="nova.jpg"><br>
-				<a href=""><h5 class="blue">textbook</h5></a>
+				<img src="/images/book/{{ book['ISBN'] }}.jpg"><br>
+				<a href="/book/{{ book['ISBN'] }}"><h5 class="blue">{{ book['NAME'] }}</h5></a>
 			    </div>
-			    <div class="large-4 small-12 columns text-center">
-				<img src="nova.jpg"><br>
-				<a href=""><h5 class="blue">textbook</h5></a>
-			    </div>
-			    <div class="large-4 small-12 columns text-center">
-				<img src="nova.jpg"><br>
-				<a href=""><h5 class="blue">textbook</h5></a>
-			    </div>
+			{% endfor %}
 			</div>
 		    </div>
 		</li>
@@ -34,18 +28,12 @@
 		    <a href="#recommended">Recommended Texts</a>
 		    <div id="recommended" class="content">
 			<div class="row">
+			{% for book in recommended %}
 			    <div class="large-4 small-12 columns text-center">
-				<img src="nova.jpg"><br>
-				<h5 class="blue">textbook</h5>
+				<img src="/images/book/{{ book['ISBN'] }}.jpg"><br>
+				<a href="/book/{{ book['ISBN'] }}"><h5 class="blue">{{ book['NAME'] }}</h5></a>
 			    </div>
-			    <div class="large-4 small-12 columns text-center">
-				<img src="nova.jpg"><br>
-				<h5 class="blue">textbook</h5>
-			    </div>
-			    <div class="large-4 small-12 columns text-center">
-				<img src="nova.jpg"><br>
-				<h5 class="blue">textbook</h5>
-			    </div>
+			{% endfor %}
 			</div>
 		    </div>
 		</li>
