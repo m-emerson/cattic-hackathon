@@ -17,7 +17,7 @@
 			<div class="row">
 			{% for book in required %}
 			    <div class="large-4 small-12 columns text-center">
-				<img src="/images/book/{{ book['ISBN'] }}.jpg"><br>
+				<img class="tb_prev" src="/images/book/{{ book['ISBN'] }}.jpg"><br>
 				<a href="/book/{{ book['ISBN'] }}"><h5 class="blue">{{ book['NAME'] }}</h5></a>
 			    </div>
 			{% endfor %}
@@ -30,7 +30,7 @@
 			<div class="row">
 			{% for book in recommended %}
 			    <div class="large-4 small-12 columns text-center">
-				<img src="/images/book/{{ book['ISBN'] }}.jpg"><br>
+				<img class="tb_prev" src="/images/book/{{ book['ISBN'] }}.jpg"><br>
 				<a href="/book/{{ book['ISBN'] }}"><h5 class="blue">{{ book['NAME'] }}</h5></a>
 			    </div>
 			{% endfor %}

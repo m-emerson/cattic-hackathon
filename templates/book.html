@@ -7,13 +7,13 @@
 <div class="container">
     <div class="row">
 	<div class="large-6 medium-6 columns panel text-center">
-	    <img src="/images/book/{{ listings[0]['ISBN'] }}.jpg">
+	    <img class="tb_prev" src="/images/book/{{ listings[0]['ISBN'] }}.jpg">
 	</div>
 	<div class="large-6 medium-6 columns">
 	    <div class="panel">
 		<h4 class="blue">{{ listings[0]['NAME'] }}</h4>
-		edition: {{ listings[0]['EDITION'] }}<br>
-		{{ listings[0]['AUTHOR'] }}<br>
+		<strong>Edition:</strong> {{ listings[0]['EDITION'] }}<br>
+		<strong>Author:</strong> {{ listings[0]['AUTHOR'] }}<br>
 		{{ listings[0]['DESCRIPTION'] }}<br>
 	    </div>
 	</div>
@@ -39,8 +39,6 @@
 				    <span class="prefix">Book:</span>
 				</div>
 				<div class="small-9 columns">
-				    <input type="text" value="booktitle" readonly="readonly">
-				<div class="small-8 columns">
 				    <input type="text" id="book_name" value="{{ listings[0]['NAME'] }}" readonly="readonly">
 				</div>
 			    </div>
@@ -49,8 +47,6 @@
 				    <span class="prefix">Price:</span>
 				</div>
 				<div class="small-9 columns">
-				    <input type="text" placeholder="Price in AUD">
-				<div class="small-8 columns">
 				    <input name="price" type="text" placeholder="Price in AUD">
 				</div>
 			    </div>
@@ -59,8 +55,6 @@
 				    <span class="prefix">Condition:</span>
 				</div>
 				<div class="small-9 columns">
-				    <select>
-				<div class="small-8 columns">
 				    <select name="condition">
 					<option value="New">New - perfect quality</option>
 					<option value="Good">Good - unmarked</option>
@@ -110,7 +104,7 @@
 				    <span class="prefix">User:</span>
 				</div>
 				<div class="small-10 columns">
-				    <input type="text" value="{{ listing.USERID }}" readonly="readonly">
+				    <input type="text" value="{{ listing.USERNAME }}" readonly="readonly">
 				</div>
 			    </div>
 			    <div class="row">
@@ -121,11 +115,10 @@
 			    <a href="" class="tiny round button">Send Mail!</a>
 			</div>
 		    </div>
-		</div>	
-		    </div>
-		{% endfor %}
 		</div>
 		<hr>
+		{% endfor %}
+		</div>
 	    </div>
 	</div>
     </div>
